@@ -1,0 +1,45 @@
+<?php
+/**
+ * Oggetto web extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ * @category   Default
+ * @package    Oggetto
+ * @copyright  Copyright © 2008–2011 Oggetto Web ltd (http://oggettoweb.com/)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div id="ajaxcart_progress" class="ajaxcart_progress" style="display:none; left:0px; top:0px;">
+    <img src="<?php echo $this->getSkinUrl('images/ajaxcart/progressbar.gif') ?>" alt="" />
+	<p><?php echo $this->__("Please wait...") ?></p>
+</div>
+
+<div id="ajaxcart-config" class="lightboxA ajaxcart-config" style="display:none;">
+    <div id="options"></div>
+</div>
+
+<script type="text/javascript">
+
+    ajaxcartLb = new LightboxA($('ajaxcart-config'));
+
+    ajaxcartLb.observe('lb:beforeopen', function(){
+        productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button){
+            if (this.validator.validate()) {
+                hideOptionsDialog();
+
+                formSubmit(this.form);
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+    });
+</script>

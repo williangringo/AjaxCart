@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+<!--=================-checkout-==============================================================================-->
+    <default>
+        <reference type="page/html_head" name="head">
+            <action method="addItem"><type>skin_js</type><name>js/oggetto/ajaxcart.js</name><params/></action>
+            <action method="addCss"><stylesheet>css/oggetto/ajaxcart.css</stylesheet></action>
+            <action method="addJs"><script>varien/product.js</script></action>
+            <block type="core/template" name="addobserverA" template="ajaxcart/addObserver.phtml" />
+        </reference>
+    </default>
+
+    <catalog_category_default translate="label">
+        <reference name="content">
+            <block type="core/template" name="addobserverA" template="ajaxcart/addObserver.phtml" />
+        </reference>
+    </catalog_category_default>
+
+<!--
+Category layered navigation layout
+-->
+    <catalog_category_layered>
+        <reference name="content">
+            <reference>
+                <block type="core/template" name="addobserverA" template="ajaxcart/addObserver.phtml" />
+            </reference>
+        </reference>
+    </catalog_category_layered>
+
+    <catalog_product_view translate="label">
+        <reference name="content">
+            <reference>
+                <block type="core/template" name="addobserverA" template="ajaxcart/addObserver.phtml" />
+            </reference>
+        </reference>
+    </catalog_product_view>
+
+    <checkout_cart_index translate="label">
+        <reference name="content">
+            <reference>
+                <block type="core/template" name="addobserverA" template="ajaxcart/addObserver.phtml" />
+            </reference>
+        </reference>
+    </checkout_cart_index>
+
+
+
+    <checkout_cart_add>
+        <!-- Mage_Checkout -->
+        <reference name="content">
+            <block type="checkout/cart" name="checkout.cart">
+                <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
+                <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
+                <action method="chooseTemplate"/>
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/item/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/item/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/item/default.phtml</template></action>
+
+                <block type="core/text_list" name="checkout.cart.top_methods" as="top_methods" translate="label">
+                    <label>Payment Methods Before Checkout Button</label>
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                </block>
+
+                <block type="page/html_wrapper" name="checkout.cart.form.before" as="form_before" translate="label">
+                    <label>Shopping Cart Form Before</label>
+                </block>
+
+                <block type="core/text_list" name="checkout.cart.methods" as="methods" translate="label">
+                    <label>Payment Methods After Checkout Button</label>
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                    <block type="checkout/multishipping_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
+                </block>
+
+                <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="checkout/cart/coupon.phtml"/>
+                <block type="checkout/cart_shipping" name="checkout.cart.shipping" as="shipping" template="checkout/cart/shipping.phtml"/>
+                <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>
+
+                <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
+            </block>
+        </reference>
+    </checkout_cart_add>
+
+    <checkout_cart_delete>
+        <!-- Mage_Checkout -->
+        <reference name="content">
+            <block type="checkout/cart" name="checkout.cart">
+                <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
+                <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
+                <action method="chooseTemplate"/>
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/item/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/item/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/item/default.phtml</template></action>
+
+                <block type="core/text_list" name="checkout.cart.top_methods" as="top_methods" translate="label">
+                    <label>Payment Methods Before Checkout Button</label>
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                </block>
+
+                <block type="page/html_wrapper" name="checkout.cart.form.before" as="form_before" translate="label">
+                    <label>Shopping Cart Form Before</label>
+                </block>
+
+                <block type="core/text_list" name="checkout.cart.methods" as="methods" translate="label">
+                    <label>Payment Methods After Checkout Button</label>
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                    <block type="checkout/multishipping_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
+                </block>
+
+                <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="checkout/cart/coupon.phtml"/>
+                <block type="checkout/cart_shipping" name="checkout.cart.shipping" as="shipping" template="checkout/cart/shipping.phtml"/>
+                <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>
+
+                <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
+            </block>
+        </reference>
+    </checkout_cart_delete>
+
+    <wishlist_index_cart>
+        <reference name="content">
+            <block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links.phtml"/>
+        </reference>
+    </wishlist_index_cart>
+
+</layout>
